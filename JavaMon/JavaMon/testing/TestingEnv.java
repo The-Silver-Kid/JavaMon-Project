@@ -4,8 +4,8 @@
  */
 package JavaMon.testing;
 
-import DevTSK.JavaMon.Move;
-import DevTSK.JavaMon.Defaults.Pound;
+// import DevTSK.JavaMon.Move;
+// import DevTSK.JavaMon.Defaults.Pound;
 
 public class TestingEnv {
 
@@ -16,6 +16,6 @@ public class TestingEnv {
 		//Type a = new Type(i), d = new Type(o);
 		//System.out.println(Type.NAMES[i] + "->" + Type.NAMES[o] + ":" + Type.getTypeEffectiveness(a, d));
 		//}
-		Move[] moves = new Move[] { new Pound() };
+		//Move[] moves = new Move[] { new Pound() };
 	}
 }
