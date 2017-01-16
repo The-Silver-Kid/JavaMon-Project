@@ -3,18 +3,18 @@ package DevTSK.JavaMon;
 public class MoveSet {
 
 	private byte[] level;
-	private Attack[] attack;
+	private Move[] Move;
 
-	public MoveSet(byte[] level, Attack[] attack) {
+	public MoveSet(byte[] level, Move[] Move) {
 		this.level = level;
-		this.attack = attack;
+		this.Move = Move;
 	}
 
-	public Attack getMove(byte level) {
-		Attack ret = new Attack();
-		for (int i = 0; i < attack.length; i++)
+	public Move getMove(byte level) {
+		Move ret = null;
+		for (int i = 0; i < Move.length; i++)
 			if (this.level[i] == level)
-				ret = attack[i];
+				ret = Move[i];
 
 		return ret;
 	}

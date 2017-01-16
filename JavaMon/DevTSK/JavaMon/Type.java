@@ -4,30 +4,31 @@ public class Type {
 
 	private int[] ID = new int[] { -1, -1 };
 
-	private static final String[] NAMES = new String[] {
+	public static final String[] NAMES = new String[] {
 			"Normal", "Fighting", "Flying", "Poison", "Ground", "Rock", "Bug", "Ghost", "Steel",
-			"Fire", "Water", "Grass", "Electric", "Psychic", "Ice", "Dragon", "Dark", "Fairy"
+			"Fire", "Water", "Grass", "Electric", "Psychic", "Ice", "Dragon", "Dark", "Fairy", "Shadow"
 	};
 
 	private static final double[][] EFFECTIVENESS = new double[][] {
-			{ 1, 1, 1, 1, 1, .5, 1, 0, .5, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, //Normal
-			{ 2, 1, .5, .5, 1, 2, .5, 0, 2, 1, 1, 1, 1, .5, 2, 1, 2, .5 }, //Fight
-			{ 1, 2, 1, 1, 1, .5, 2, 1, .5, 1, 1, 2, .5, 1, 1, 1, 1, 1 }, //Fly
-			{ 1, 1, 1, .5, .5, .5, 1, .5, 0, 1, 1, 2, 1, 1, 1, 1, 1, 2 }, //Poison
-			{ 1, 1, 0, 2, 1, 2, .5, 1, 2, 2, 1, .5, 2, 1, 1, 1, 1, 1 }, //Ground
-			{ 1, .5, 2, 1, .5, 1, 2, 1, .5, 2, 1, 1, 1, 1, 2, 1, 1, 1 }, //Rock
-			{ 1, .5, .5, .5, 1, 1, 1, .5, .5, .5, 1, 2, 1, 2, 1, 1, 2, .5 }, //Bug
-			{ 0, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1, .5, 1 }, //Ghost
-			{ 1, 1, 1, 1, 1, 2, 1, 1, .5, .5, .5, 1, .5, 1, 2, 1, 1, 1, 2 }, //Steel
-			{ 1, 1, 1, 1, 1, .5, 2, 1, 2, .5, .5, 2, 1, 1, 2, .5, 1, 1 }, //Fire
-			{ 1, 1, 1, 1, 2, 2, 1, 1, 1, 2, .5, .5, 1, 1, 1, .5, 1, 1 }, //Water
-			{ 1, 1, .5, .5, 2, 2, .5, 1, .5, .5, 2, .5, 1, 1, 1, .5, 1, 1 }, //Grass
-			{ 1, 1, 2, 1, 0, 1, 1, 1, 1, 1, 2, .5, .5, 1, 1, .5, 1, 1 }, //Electric
-			{ 1, 2, 1, 2, 1, 1, 1, 1, .5, 1, 1, 1, 1, .5, 1, 1, 0, 1 }, //Psychic
-			{ 1, 1, 2, 1, 2, 1, 1, 1, .5, .5, .5, 2, 1, 1, .5, 2, 1, 1 }, //Ice
-			{ 1, 1, 1, 1, 1, 1, 1, 1, .5, 1, 1, 1, 1, 1, 1, 2, 1, 0 }, //Dragon
-			{ 1, .5, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1, .5, .5 }, //Dark
-			{ 1, 2, 1, .5, 1, 1, 1, 1, .5, .5, 1, 1, 1, 1, 1, 2, 2, 1 } //Fairy
+			{ 1, 1, 1, 1, 1, .5, 1, 0, .5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 }, //Normal
+			{ 2, 1, .5, .5, 1, 2, .5, 0, 2, 1, 1, 1, 1, .5, 2, 1, 2, .5, 0 }, //Fight
+			{ 1, 2, 1, 1, 1, .5, 2, 1, .5, 1, 1, 2, .5, 1, 1, 1, 1, 1, 0 }, //Fly
+			{ 1, 1, 1, .5, .5, .5, 1, .5, 0, 1, 1, 2, 1, 1, 1, 1, 1, 2, 1 }, //Poison
+			{ 1, 1, 0, 2, 1, 2, .5, 1, 2, 2, 1, .5, 2, 1, 1, 1, 1, 1, 1 }, //Ground
+			{ 1, .5, 2, 1, .5, 1, 2, 1, .5, 2, 1, 1, 1, 1, 2, 1, 1, 1, 1 }, //Rock
+			{ 1, .5, .5, .5, 1, 1, 1, .5, .5, .5, 1, 2, 1, 2, 1, 1, 2, .5, 1 }, //Bug
+			{ 0, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1, .5, 1, 0 }, //Ghost
+			{ 1, 1, 1, 1, 1, 2, 1, 1, .5, .5, .5, 1, .5, 1, 2, 1, 1, 1, 2, 1 }, //Steel
+			{ 1, 1, 1, 1, 1, .5, 2, 1, 2, .5, .5, 2, 1, 1, 2, .5, 1, 1, 2 }, //Fire
+			{ 1, 1, 1, 1, 2, 2, 1, 1, 1, 2, .5, .5, 1, 1, 1, .5, 1, 1, 1 }, //Water
+			{ 1, 1, .5, .5, 2, 2, .5, 1, .5, .5, 2, .5, 1, 1, 1, .5, 1, 1, 0 }, //Grass
+			{ 1, 1, 2, 1, 0, 1, 1, 1, 1, 1, 2, .5, .5, 1, 1, .5, 1, 1, 2 }, //Electric
+			{ 1, 2, 1, 2, 1, 1, 1, 1, .5, 1, 1, 1, 1, .5, 1, 1, 0, 1, 0 }, //Psychic
+			{ 1, 1, 2, 1, 2, 1, 1, 1, .5, .5, .5, 2, 1, 1, .5, 2, 1, 1, 1 }, //Ice
+			{ 1, 1, 1, 1, 1, 1, 1, 1, .5, 1, 1, 1, 1, 1, 1, 2, 1, 0, 0 }, //Dragon
+			{ 1, .5, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1, .5, .5, 0 }, //Dark
+			{ 1, 2, 1, .5, 1, 1, 1, 1, .5, .5, 1, 1, 1, 1, 1, 2, 2, 1, .5 }, //Fairy
+			{ 2, 2, 2, 1, 1, 1, .5, 0, 1, .5, 1, 2, .5, 2, .5, 2, 0, 2, 2 } //Shadow
 	};
 
 	public Type(int primary, int secondary) {
@@ -43,7 +44,7 @@ public class Type {
 	}
 
 	public Type(int type) {
-		if (type < 1 || type > NAMES.length) {
+		if (type < 0 || type > NAMES.length) {
 			System.err.println("Lol\nLook at you trying to create something with a type that doesn't exist!");
 		}
 		this.ID = new int[] { type, type };
@@ -120,5 +121,13 @@ public class Type {
 			effect = effect * EFFECTIVENESS[attack.getID()[0]][defend.getID()[0]];
 
 		return effect;
+	}
+
+	public String toString() {
+		return NAMES[ID[0]] + " " + NAMES[ID[1]];
+	}
+
+	public Type[] split() {
+		return new Type[] { new Type(ID[0]), new Type(ID[1]) };
 	}
 }
