@@ -92,18 +92,21 @@ public class Arraybuilder {
 		}
 
 		public void actionPerformed(ActionEvent arg0) {
+			String corr = "";
 			String[] slice = input.getText().split("\\n+");
 			String[][] lol = new String[slice.length][];
 			for (int i = 0; i < slice.length; i++)
 				lol[i] = slice[i].split(",");
 			for (int i = 0; i < slice.length; i++) {
-				String end = "package DevTSK.JavaMon.Defaults;" +
+				corr = lol[i][0].replaceAll("\\s", "");
+				corr = corr.replaceAll("-", "_");
+				String end = "package DevTSK.JavaMon.Defaults.Generation2;" +
 						"\n" +
 						"\nimport DevTSK.JavaMon.Monster;" +
 						"\nimport DevTSK.JavaMon.Move;" +
 						"\nimport DevTSK.JavaMon.Type;" +
 						"\n" +
-						"\npublic class " + lol[i][0] + " extends Move {" +
+						"\npublic class " + corr + " extends Move {" +
 						"\n" +
 						"\n	/* Category" +
 						"\n	 * 0 = Physical" +
@@ -111,7 +114,7 @@ public class Arraybuilder {
 						"\n	 * 2 = Status" +
 						"\n	 */" +
 						"\n" +
-						"\n	public " + lol[i][0] + "() {" +
+						"\n	public " + corr + "() {" +
 						"\n		name = \"" + lol[i][0] + "\";" +
 						"\n" +
 						"\n		neverMiss = false;" +
@@ -121,7 +124,7 @@ public class Arraybuilder {
 						"\n" +
 						"\n		baseDamage = " + lol[i][4] + ";" +
 						"\n		baseAccuracy = " + lol[i][5] + ";" +
-						"\n		PP =" + lol[i][3] + ";" +
+						"\n		PP = " + lol[i][3] + ";" +
 						"\n" +
 						"\n		priority = 1;" +
 						"\n" +
@@ -129,13 +132,14 @@ public class Arraybuilder {
 						"\n	}" +
 						"\n" +
 						"\n	@Override" +
-						"\n	public void getEffect(Monster atk, Monster def) {" +
+						"\n	public Monster[] getEffect(Monster atk, Monster def) {" +
+						"\n	return new Monster[] { atk , def };" +
 						"\n	}" +
 						"\n" +
 						"}";
 				StringWriter s = new StringWriter();
 				try {
-					s.Write(end, lol[i][0] + ".java", false, f.getAbsolutePath());
+					s.Write(end, corr + ".java", false, f.getAbsolutePath());
 				} catch (IOException e) {
 					e.printStackTrace();
 				}

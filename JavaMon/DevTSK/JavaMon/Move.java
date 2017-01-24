@@ -26,7 +26,7 @@ public abstract class Move {
 		return new double[] { baseDamage, baseAccuracy, priority };
 	}
 
-	public abstract void getEffect(Monster atk, Monster def);
+	public abstract Monster[] getEffect(Monster atk, Monster def);
 
 	public int getPhysical() {
 		return category;

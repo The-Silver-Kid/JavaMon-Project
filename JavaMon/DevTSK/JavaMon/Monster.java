@@ -1,10 +1,12 @@
 package DevTSK.JavaMon;
 
+import java.util.Random;
+
 public abstract class Monster {
 
 	//TODO : Handle move sets
 
-	public static final int HP = 0, ATTACK = 1, DEFENSE = 2, SATTACK = 3, SDEFENSE = 4, SPEED = 5;
+	public static final int HP = 0, ATTACK = 1, DEFENSE = 2, SATTACK = 3, SDEFENSE = 4, SPEED = 5, ACCURACY = 6, EVASIVENESS = 7;
 
 	protected MoveSet moveset;
 
@@ -16,6 +18,14 @@ public abstract class Monster {
 			IV = new int[] { 0, 0, 0, 0, 0, 0 },
 			baseStats = new int[] { 0, 0, 0, 0, 0, 0 },
 			stats = new int[] { 0, 0, 0, 0, 0, 0 };
+
+	protected EggGroup eg = new EggGroup("Undiscovered");
+
+	// Same as attacks followed by accuracy and evasiveness
+	public int[] inBattleStats = new int[] { 0, 0, 0, 0, 0, 0, 0, 0 };
+	public Boolean flinched = false;
+	public Boolean canAttack = true;
+	public Status status = new Status(Status.CLEAR);
 
 	protected int[] EVYield;
 
@@ -29,6 +39,7 @@ public abstract class Monster {
 
 	protected Type type = new Type("Normal", "Flying");
 
+	//TODO : Rewrite constructors.
 	//Not wild
 	public Monster(byte level, int[] EVs, int[] baseStats, int[] EVYield, int[] IVs, Nature nature, Type type) {
 		this.level = level;
@@ -110,5 +121,54 @@ public abstract class Monster {
 
 	public Type getType() {
 		return type;
+	}
+
+	public int setBattleStats(int stat, int levels) {
+		int ret;
+		if (this.inBattleStats[stat] == 6 || this.inBattleStats[stat] == -6)
+			ret = 0;
+		else if (this.inBattleStats[stat] + levels > 6) {
+			this.inBattleStats[stat] = 6;
+			ret = 1;
+		} else if (this.inBattleStats[stat] + levels < -6) {
+			this.inBattleStats[stat] = -6;
+			ret = 1;
+		} else {
+			this.inBattleStats[stat] += levels;
+			ret = 1;
+		}
+		return ret;
+	}
+
+	public int causeFlinch() {
+		this.flinched = true;
+		return 1;
+	}
+
+	public int applyStatus(int status, Boolean usedRest) {
+		if (usedRest == false)
+			if (this.status.toString().equals("CLEAR")) {
+				this.status.changeStatus(status, usedRest);
+				if (status == Status.BURN)
+					this.inBattleStats[Monster.ATTACK] = (int) (this.inBattleStats[Monster.ATTACK] / 2);
+				if (status == Status.FROZEN)
+					this.canAttack = false;
+				return 1;
+			} else {
+				return 0;
+			}
+		else {
+			this.status.changeStatus(status, usedRest);
+			return 1;
+		}
+	}
+
+	public void update() {
+		Random r = new Random();
+		if (!this.status.toString().equals("FROZEN") && !this.status.toString().equals("SLEEP"))
+			this.canAttack = true;
+		if (this.status.toString().equals("PARALYZED"))
+			if (r.nextInt(100) < 25)
+				this.canAttack = false;
 	}
 }

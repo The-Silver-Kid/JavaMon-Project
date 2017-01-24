@@ -91,7 +91,6 @@ public class Type {
 	}
 
 	public static double getTypeEffectiveness(Type attack, Type defend) {
-		//TODO
 		double effect = 1;
 
 		int[] atk = attack.getID();

@@ -4,6 +4,21 @@ import java.util.Random;
 
 public class DamageCalculation {
 
+	public static final double[] STATSTAGES = new double[] {
+			2 / 8,
+			2 / 7,
+			2 / 6,
+			2 / 5,
+			2 / 4,
+			2 / 3,
+			2 / 2,
+			3 / 2,
+			4 / 2,
+			5 / 2,
+			6 / 2,
+			7 / 2,
+			8 / 2 };
+
 	public static int calc(Monster atk, Monster def, Move m) {
 		double damage = 0;
 		Random r = new Random();
@@ -48,5 +63,17 @@ public class DamageCalculation {
 		System.out.println(damage);
 
 		return (int) damage;
+	}
+
+	public static int statusCalc(int i, int bPoison, int totalHP) {
+		switch (i) {
+		case Status.POISON:
+			return (int) ((double) totalHP * (1 / 8));
+		case Status.BPOISON:
+			return (int) ((double) totalHP * ((double) bPoison / 16));
+		case Status.BURN:
+			return (int) ((double) totalHP * (1 / 16));
+		}
+		return 0;
 	}
 }
